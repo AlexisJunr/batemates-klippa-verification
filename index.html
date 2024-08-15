@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,6 +6,25 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://custom-ocr.klippa.com/sdk/web/build/identity_verification/0.5.5/style.css" />
     <script src="https://custom-ocr.klippa.com/sdk/web/build/identity_verification/0.5.5/klippa.min.js"></script>
+    <style>
+        @font-face {
+            font-family: 'MazzardH';
+            src: url('./MazzardH-Regular.otf') format('opentype');
+            font-weight: normal, 400, lighter;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'MazzardH';
+            src: url('./MazzardH-SemiBold.otf') format('opentype');
+            font-weight: bold, bolder, 500, 600;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'MazzardH', sans-serif !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,18 +32,38 @@
     <div id='klippa-identity-verification'></div>
 
     <script>
-        // Fonction pour obtenir le paramètre de l'URL
-        function getParameterByName(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
-
         KlippaIDVerification.init({
-            token: getParameterByName('token'), // Récupération du token depuis l'URL
-            // id of the element you want to mount the component on
             containerId: 'klippa-identity-verification',
             enableAutoCapture: false,
             enableRealtimeFeedback: false,
+            getTokenFromUrl: true,
+            messages: {
+                intro: {
+                    title: "Batemates - Start your ID verification",
+                    description: "Make sure you have your documents at hand.",
+                    buttonText: "Start now"
+                }
+            },
+            colors: {
+                textColor: "#FFF",
+                successColor: "#4D5DFF",
+                errorColor: "#FF3232",
+                otherColor: "#4D5DFF",
+                backgroundColor: "#262626",
+                progressBarBackground: "#333333",
+                progressBarForeground: "#FBFF4D"
+            },
+            fonts: {
+                fontName: "MazzardH",
+                boldFontName: "MazzardH"
+            },
+            onError: function (error) {
+                if (error.type === "expired_token") {
+                    alert("The token has expired. Please regenerate the token from Batemates app.");
+                } else {
+                    alert("An unknown error occurred : " + error.message.toString());
+                }
+            },
             onComplete: function () {
                 alert("everything is complete")
             }
