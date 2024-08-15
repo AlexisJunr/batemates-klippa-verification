@@ -6,30 +6,43 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://custom-ocr.klippa.com/sdk/web/build/identity_verification/0.5.5/style.css" />
     <script src="https://custom-ocr.klippa.com/sdk/web/build/identity_verification/0.5.5/klippa.min.js"></script>
-    <style>
-        @font-face {
-            font-family: 'MazzardH';
-            src: url('./MazzardH-Regular.otf') format('opentype');
-            font-weight: normal, 400, lighter;
-            font-style: normal;
-        }
 
-        @font-face {
-            font-family: 'MazzardH';
-            src: url('./MazzardH-SemiBold.otf') format('opentype');
-            font-weight: bold, bolder, 500, 600;
-            font-style: normal;
-        }
-
-        body {
-            font-family: 'MazzardH', sans-serif !important;
-        }
-    </style>
 </head>
 
 <body>
 
-    <div id='klippa-identity-verification'></div>
+    <style>
+        /* CSS Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Custom Styles */
+        @font-face {
+            font-family: 'MazzardH';
+            src: url("./assets/fonts/MazzardH-Regular.ttf") format("truetype"),
+                url("./assets/fonts/MazzardH-SemiBold.ttf") format("truetype");
+        }
+
+        * {
+            font-family: 'MazzardH' !important;
+        }
+
+        body {
+            background-color: #262626 !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+    </style>
+
+    <div id='klippa-identity-verification'>
+        <img src="assets/svg/batemates_logo_white.svg" alt="Batemates Logo" />
+    </div>
 
     <script>
         KlippaIDVerification.init({
@@ -37,13 +50,6 @@
             enableAutoCapture: false,
             enableRealtimeFeedback: false,
             getTokenFromUrl: true,
-            messages: {
-                intro: {
-                    title: "Batemates - Start your ID verification",
-                    description: "Make sure you have your documents at hand.",
-                    buttonText: "Start now"
-                }
-            },
             colors: {
                 textColor: "#FFF",
                 successColor: "#4D5DFF",
@@ -52,10 +58,6 @@
                 backgroundColor: "#262626",
                 progressBarBackground: "#333333",
                 progressBarForeground: "#FBFF4D"
-            },
-            fonts: {
-                fontName: "MazzardH",
-                boldFontName: "MazzardH"
             },
             onError: function (error) {
                 if (error.type === "expired_token") {
@@ -68,6 +70,8 @@
                 alert("everything is complete")
             }
         })
+
+
     </script>
 
 </body>
