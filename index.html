@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://custom-ocr.klippa.com/sdk/web/build/identity_verification/0.5.5/style.css" />
+    <script src="https://custom-ocr.klippa.com/sdk/web/build/identity_verification/0.5.5/klippa.min.js"></script>
+</head>
+
+<body>
+
+    <div id='klippa-identity-verification'></div>
+
+    <script>
+        // Fonction pour obtenir le paramètre de l'URL
+        function getParameterByName(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        KlippaIDVerification.init({
+            token: getParameterByName('token'), // Récupération du token depuis l'URL
+            // id of the element you want to mount the component on
+            containerId: 'klippa-identity-verification',
+            enableAutoCapture: true,
+            enableRealtimeFeedback: true,
+            onComplete: function () {
+                alert("everything is complete")
+            }
+        })
+    </script>
+
+</body>
+
+</html>
