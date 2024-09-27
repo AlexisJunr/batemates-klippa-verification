@@ -36,12 +36,38 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            width: 100vw;
             height: 100vh;
+            overflow-y: scroll;
+        }
+
+        h1 {
+            font-size: 1.5rem !important;
+        }
+
+        h2 {
+            font-size: 1.1rem !important;
+        }
+
+        .kiv-sdk-ui-Header-kivHeaderTopBar {
+            display: none !important;
+        }
+
+        .kiv-sdk-ui-Header-kivHeader {
+            min-height: 0px !important;
+        }
+
+        .kiv-sdk-ui-DocumentPicture-kivDocumentPictureContentHeader {
+            padding: 4px !important;
+        }
+
+        .kiv-sdk-ui-DocumentPicture-kivDocumentPictureContentHeader {
+            min-height: 0px !important;
         }
     </style>
 
     <div id='klippa-identity-verification'>
-        <img src="assets/svg/batemates_logo_white.svg" alt="Batemates Logo" />
+        <img src=" assets/svg/batemates_logo_white.svg" alt="Batemates Logo" style="width: 80%; object-fit: contain;" />
     </div>
 
     <script>
@@ -50,6 +76,14 @@
             enableAutoCapture: false,
             enableRealtimeFeedback: true,
             getTokenFromUrl: true,
+            verifyIncludeList: [
+                "DateOfExpiry",
+                "DateOfIssue",
+                "Face",
+                "GivenNames",
+                "PlaceOfBirth",
+                "Surname"
+            ],
             colors: {
                 textColor: "#FFF",
                 successColor: "#4D5DFF",
